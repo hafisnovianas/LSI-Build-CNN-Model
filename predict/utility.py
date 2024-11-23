@@ -28,9 +28,3 @@ def cetak(data):
     pd.set_option('display.max_rows', None)
     df = pd.DataFrame(data)
     print(df)
-
-def copyAllFile(sourceFolderPath,targetFolderPath):
-    print(sourceFolderPath)
-    for fileName in os.listdir(sourceFolderPath):
-        sourceFilePath = os.path.join(sourceFolderPath, fileName)
-        shutil.copy2(sourceFilePath, targetFolderPath)

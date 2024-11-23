@@ -2,7 +2,7 @@ import numpy as np
 from tensorflow.keras.preprocessing import image
 from tensorflow.keras.models import load_model
 import os
-import utility
+import predict.utility as utility
 
 # Ukuran gambar sesuai dengan yang digunakan dalam pelatihan
 IMG_HEIGHT = 480
@@ -13,7 +13,6 @@ model = load_model('best_model/best_model_cnn_minyak_goreng_BAGUS.keras')
 
 # Fungsi prediksi untuk gambar baru
 def predict_image(image_path):
-    # Memuat gambar dan mengubahnya ke ukuran yang sesuai
     img = image.load_img(image_path, target_size=(IMG_HEIGHT, IMG_WIDTH))
     img_array = image.img_to_array(img)
     
