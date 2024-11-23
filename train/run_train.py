@@ -1,7 +1,7 @@
 from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense, Dropout, Input
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.callbacks import ModelCheckpoint, EarlyStopping
-import train.generator as generator
+import generator
 
 # Ukuran gambar dan parameter lainnya
 IMG_HEIGHT = 480
