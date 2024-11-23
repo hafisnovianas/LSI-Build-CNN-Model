@@ -2,7 +2,7 @@ import numpy as np
 from tensorflow.keras.preprocessing import image
 from tensorflow.keras.models import load_model
 import os
-import predict.utility as utility
+import utility
 
 # Ukuran gambar sesuai dengan yang digunakan dalam pelatihan
 IMG_HEIGHT = 480

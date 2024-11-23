@@ -1,6 +1,6 @@
 from tensorflow.keras.models import load_model
 from tensorflow.keras.callbacks import ModelCheckpoint, EarlyStopping
-import train.generator as generator
+import generator
 
 # Parameter gambar dan pelatihan
 IMG_HEIGHT = 480

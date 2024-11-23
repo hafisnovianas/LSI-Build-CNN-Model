@@ -2,7 +2,6 @@ import numpy as np
 import pandas as pd
 import os
 import pickle
-import shutil
 
 def saveToExcel(data,file_name, folder_path):
     file_path = os.path.join(folder_path, file_name + '.xlsx')

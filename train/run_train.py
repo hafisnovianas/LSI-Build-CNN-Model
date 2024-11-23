@@ -3,7 +3,6 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.callbacks import ModelCheckpoint, EarlyStopping
 import generator
 
-# Ukuran gambar dan parameter lainnya
 IMG_HEIGHT = 480
 IMG_WIDTH = 640
 BATCH_SIZE = 32
