@@ -2,14 +2,14 @@ import numpy as np
 from tensorflow.keras.preprocessing import image
 from tensorflow.keras.models import load_model
 import os
-import utility
+import module.utility as utility
 
 # Ukuran gambar sesuai dengan yang digunakan dalam pelatihan
 IMG_HEIGHT = 480
 IMG_WIDTH = 640
 
 # Memuat model yang sudah dilatih
-model = load_model('best_model/best_model_cnn_minyak_goreng_BAGUS.keras')
+model = load_model('model_results/best_model_cnn_minyak_goreng.keras')
 
 # Fungsi prediksi untuk gambar baru
 def predict_image(image_path):
@@ -23,7 +23,7 @@ def predict_image(image_path):
     prediction = model.predict(img_array)
     
     # Mendefinisikan nama kelas sesuai dengan label pelatihan
-    class_names = ['Curah', 'Kemasan', 'Oplosan']
+    class_names = ['Curah', 'Murni', 'Oplosan']
     
     # Mengambil kelas dengan probabilitas tertinggi
     predicted_class = class_names[np.argmax(prediction)]

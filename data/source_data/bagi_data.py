@@ -1,7 +1,7 @@
 import os
 import shutil
 
-sourceFolderPath = 'data\DATA PROTOTIPE\OPLOSAN\CC2'
+sourceFolderPath = 'data\source_data\DATA PROTOTIPE\OPLOSAN\CC2'
 sourceFolderName = os.path.basename(sourceFolderPath)
 dataLatihFolderPath = os.path.join(sourceFolderPath, sourceFolderName + '(data latih)')
 dataUjiFolderPath = os.path.join(sourceFolderPath, sourceFolderName + '(data uji)')

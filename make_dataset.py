@@ -1,10 +1,10 @@
 import os
-import utility as utility
+import module.utility as utility
 
 dataName = 'OPLOSAN'
-sourceFolderPath = os.path.join('data\DATA PROTOTIPE', dataName)
-latihFolderPath = os.path.join('dataset/data_latih',dataName)
-ujiFolderPath = os.path.join('dataset/data_uji',dataName)
+sourceFolderPath = os.path.join('data\source_data\DATA PROTOTIPE', dataName)
+latihFolderPath = os.path.join('data\dataset\data_latih',dataName)
+ujiFolderPath = os.path.join('data\dataset\data_uji',dataName)
 
 os.makedirs(latihFolderPath, exist_ok=True)
 os.makedirs(ujiFolderPath, exist_ok=True)

@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 import os
 import pickle
+import shutil
 
 def saveToExcel(data,file_name, folder_path):
     file_path = os.path.join(folder_path, file_name + '.xlsx')
@@ -27,3 +28,9 @@ def cetak(data):
     pd.set_option('display.max_rows', None)
     df = pd.DataFrame(data)
     print(df)
+
+def copyAllFile(sourceFolderPath,targetFolderPath):
+    print(sourceFolderPath)
+    for fileName in os.listdir(sourceFolderPath):
+        sourceFilePath = os.path.join(sourceFolderPath, fileName)
+        shutil.copy2(sourceFilePath, targetFolderPath)
