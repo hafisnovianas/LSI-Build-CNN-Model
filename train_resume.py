@@ -7,15 +7,15 @@ IMG_HEIGHT = 480
 IMG_WIDTH = 640
 BATCH_SIZE = 32
 EPOCHS = 20
-train_data_path = 'dataset/data_latih/'
+train_data_path = 'data\dataset\data_latih'
 
 train_generator, validation_generator = generator.data_generator(train_data_path, IMG_HEIGHT, IMG_WIDTH, BATCH_SIZE)
 
 # Memuat model dari checkpoint
-model = load_model('best_model/best_model_cnn_minyak_goreng_BAGUS.keras')
+model = load_model('model_results/best_model_cnn_minyak_goreng.keras')
 
 # Callback untuk menyimpan model terbaik dan Early Stopping
-checkpoint = ModelCheckpoint('best_model/best_model_cnn_minyak_goreng.keras', 
+checkpoint = ModelCheckpoint('model_results/best_model_cnn_minyak_goreng.keras', 
                              monitor='val_accuracy', 
                              save_best_only=True, 
                              mode='max')
@@ -33,4 +33,4 @@ history = model.fit(
 )
 
 # Menyimpan model akhir (jika ingin tetap menyimpan model terakhir meskipun bukan yang terbaik)
-model.save('best_model/final_model_cnn_minyak_goreng.keras')
+model.save('model_results/final(bukan best)_model_cnn_minyak_goreng.keras')

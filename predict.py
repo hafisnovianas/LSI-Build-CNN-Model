@@ -23,21 +23,22 @@ def predict_image(image_path):
     prediction = model.predict(img_array)
     
     # Mendefinisikan nama kelas sesuai dengan label pelatihan
-    class_names = ['Curah', 'Murni', 'Oplosan']
+    class_names = ['Curah', 'Kemasan', 'Oplosan']
     
     # Mengambil kelas dengan probabilitas tertinggi
     predicted_class = class_names[np.argmax(prediction)]
     
     return predicted_class
 
-dataName = 'OPLOSAN'
-ujiFolderPath = os.path.join('dataset/data_uji',dataName)
+dataName = 'CURAH'
+ujiFolderPath = os.path.join('data\dataset\data_uji',dataName)
 
 predictedList = []
 for fileName in os.listdir(ujiFolderPath):
-    filePath = os.path.join(ujiFolderPath,fileName)
-    predicted_class = predict_image(filePath)
-    predictedList.append([fileName, predicted_class])
+    if fileName.endswith('.jpg'):
+      filePath = os.path.join(ujiFolderPath,fileName)
+      predicted_class = predict_image(filePath)
+      predictedList.append([fileName, predicted_class])
 
 utility.saveToExcel(predictedList, dataName+' (prediksi)', ujiFolderPath)
 utility.cetak(predictedList)
