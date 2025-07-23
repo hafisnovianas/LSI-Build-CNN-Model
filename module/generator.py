@@ -1,10 +1,8 @@
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 
-def data_generator(train_data_path, IMG_HEIGHT, IMG_WIDTH, BATCH_SIZE):
-    # ImageDataGenerator dengan augmentasi (optional) untuk pelatihan
+def data_generator(train_data_path, validation_data_path, IMG_HEIGHT, IMG_WIDTH, BATCH_SIZE):
     train_datagen = ImageDataGenerator(
-        rescale=1./255,  # Normalisasi
-        validation_split=0.2  # 20% untuk validasi
+        rescale=1./255  # Normalisasi
         
         #====Jika butuh augmentasi, silahkan masukkan semua parameter berikut====#
         #rotation_range=20,  # Rotasi gambar acak
@@ -16,28 +14,22 @@ def data_generator(train_data_path, IMG_HEIGHT, IMG_WIDTH, BATCH_SIZE):
         #fill_mode='nearest',  # Pengisian ulang piksel yang hilang setelah transformasi
     )
 
-    # ImageDataGenerator tanpa augmentasi untuk validasi, hanya rescale
     validation_datagen = ImageDataGenerator(
-        rescale=1./255, 
-        validation_split=0.2
+        rescale=1./255
     )
 
-    # Dataset pelatihan dengan augmentasi
     train_generator = train_datagen.flow_from_directory(
         train_data_path,
         target_size=(IMG_HEIGHT, IMG_WIDTH),
         batch_size=BATCH_SIZE,
-        class_mode='categorical',
-        subset='training'
+        class_mode='categorical'
     )
 
-    # Dataset validasi tanpa augmentasi
     validation_generator = validation_datagen.flow_from_directory(
-        train_data_path,  # Pastikan ini mengacu ke folder yang sama dengan data latih
+        validation_data_path,
         target_size=(IMG_HEIGHT, IMG_WIDTH),
         batch_size=BATCH_SIZE,
-        class_mode='categorical',
-        subset='validation'
+        class_mode='categorical'
     )
 
     return train_generator, validation_generator

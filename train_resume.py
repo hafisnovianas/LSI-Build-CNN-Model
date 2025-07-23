@@ -2,20 +2,20 @@ from tensorflow.keras.models import load_model
 from tensorflow.keras.callbacks import ModelCheckpoint, EarlyStopping
 import module.generator as generator
 
-# Parameter gambar dan pelatihan
-IMG_HEIGHT = 480
-IMG_WIDTH = 640
+IMG_HEIGHT = 120
+IMG_WIDTH = 160
 BATCH_SIZE = 32
 EPOCHS = 20
-train_data_path = 'data\dataset\data_latih'
+train_data_path = 'dataset/TA HENDRA/data_train'
+validation_data_path = 'dataset/TA HENDRA/data_test'
 
-train_generator, validation_generator = generator.data_generator(train_data_path, IMG_HEIGHT, IMG_WIDTH, BATCH_SIZE)
+train_generator, validation_generator = generator.data_generator(train_data_path, validation_data_path, IMG_HEIGHT, IMG_WIDTH, BATCH_SIZE)
 
 # Memuat model dari checkpoint
-model = load_model('model_results/best_model_cnn_minyak_goreng.keras')
+model = load_model('model_results/best_model.keras')
 
 # Callback untuk menyimpan model terbaik dan Early Stopping
-checkpoint = ModelCheckpoint('model_results/best_model_cnn_minyak_goreng.keras', 
+checkpoint = ModelCheckpoint('model_results/best_model_continued.keras', 
                              monitor='val_accuracy', 
                              save_best_only=True, 
                              mode='max')
@@ -33,4 +33,4 @@ history = model.fit(
 )
 
 # Menyimpan model akhir (jika ingin tetap menyimpan model terakhir meskipun bukan yang terbaik)
-model.save('model_results/final(bukan best)_model_cnn_minyak_goreng.keras')
+model.save('model_results/last_model (bukan best).keras')

@@ -14,7 +14,7 @@ def saveToNpy(data, file_name, folder_path):
     file_path = os.path.join(folder_path, file_name + '.npy')
     np.save(file_path, data)
 
-def saveToPickel(data,file_name,folder_path):
+def saveToPickle(data,file_name,folder_path):
     file_path = os.path.join(folder_path, file_name + '.pkl')
     with open(file_path, 'wb') as file:
         pickle.dump(data,file)
@@ -30,7 +30,10 @@ def cetak(data):
     print(df)
 
 def copyAllFile(sourceFolderPath,targetFolderPath):
-    print(sourceFolderPath)
+    print(f"Menyalin file dari {sourceFolderPath} ke {targetFolderPath}")
     for fileName in os.listdir(sourceFolderPath):
         sourceFilePath = os.path.join(sourceFolderPath, fileName)
-        shutil.copy2(sourceFilePath, targetFolderPath)
+        if os.path.isfile(sourceFilePath):
+          shutil.copy2(sourceFilePath, targetFolderPath)
+          print(f"File {fileName} berhasil disalin.")
+          
