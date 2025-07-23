@@ -3,3 +3,7 @@
 *.xlsx
 *.xls
 *.pyc
+
+# Python
+__pycache__/
+*.pyc
