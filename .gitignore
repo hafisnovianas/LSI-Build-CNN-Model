@@ -2,7 +2,6 @@
 *.keras
 *.xlsx
 *.xls
-*.pyc
 
 # Python
 __pycache__/
