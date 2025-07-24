@@ -1,14 +1,20 @@
-# Klasifikasi Kualitas Minyak Goreng menggunakan CNN
+Tentu, saya akan membuatkan dokumentasi yang detail dan mudah dipahami bagi orang awam untuk menggunakan proyek klasifikasi kualitas minyak goreng ini. Dokumentasi ini akan mencakup penjelasan setiap skrip, cara penggunaannya, dan penyesuaian yang mungkin perlu dilakukan.
 
-Repositori ini berisi kode untuk membangun, melatih, dan menggunakan model *Convolutional Neural Network* (CNN) untuk mengklasifikan gambar minyak goreng ke dalam tiga kategori: **Curah**, **Kemasan**, dan **Oplosan**. Proyek ini dibuat menggunakan TensorFlow dan Keras.
+### Dokumentasi Proyek: Klasifikasi Kualitas Minyak Goreng menggunakan CNN
 
-## 📝 Deskripsi Proyek
+Dokumentasi ini akan memandu Anda dalam menggunakan serangkaian program untuk melatih dan menguji model kecerdasan buatan (*Artificial Intelligence*) yang dapat membedakan kualitas minyak goreng berdasarkan gambarnya.
 
-Tujuan dari proyek ini adalah untuk membuat sebuah model *deep learning* yang dapat secara otomatis membedakan jenis minyak goreng berdasarkan citra visualnya. Model dilatih pada dataset gambar yang telah dilabeli dan mampu memprediksi kategori dari gambar baru yang belum pernah dilihat sebelumnya.
+-----
 
-## 📂 Struktur Direktori
+### 📝 **Deskripsi Proyek**
 
-Berikut adalah struktur direktori yang direkomendasikan untuk proyek ini:
+Tujuan dari proyek ini adalah untuk membangun sebuah model *Convolutional Neural Network* (CNN) yang mampu mengklasifikasikan gambar minyak goreng ke dalam tiga kategori: **Curah**, **Kemasan**, dan **Oplosan**. Model ini dilatih menggunakan gambar-gambar yang sudah diberi label dan nantinya dapat digunakan untuk memprediksi kategori dari gambar minyak goreng baru.
+
+-----
+
+### 📂 **Struktur Direktori**
+
+Agar proyek berjalan dengan baik, pastikan Anda mengikuti struktur folder seperti di bawah ini. Anda mungkin perlu membuat beberapa folder ini secara manual.
 
 ```
 LSI-Build-CNN-Model/
@@ -35,94 +41,144 @@ LSI-Build-CNN-Model/
 └── train_resume.py
 ```
 
-## ✨ Fungsionalitas Script
+-----
 
-Berikut adalah penjelasan untuk setiap file utama dalam proyek ini:
+### ✨ **Fungsionalitas Setiap Berkas**
 
-### 1\. `run_train.py`
+Berikut adalah penjelasan fungsi dari setiap berkas penting dalam proyek ini:
 
-Script utama untuk membangun dan melatih model CNN dari awal.
+#### 1\. `run_train.py`
 
-  * **Arsitektur Model**: Terdiri dari beberapa layer `Conv2D` dan `MaxPooling2D`, diikuti oleh `Flatten` dan `Dense`. Menggunakan `Dropout` untuk mencegah *overfitting*.
-  * **Callbacks**: Mengimplementasikan `ModelCheckpoint` untuk menyimpan model dengan `val_accuracy` terbaik dan `EarlyStopping` untuk menghentikan pelatihan jika tidak ada peningkatan performa.
-  * **Output**: Model terbaik disimpan sebagai `model_results/best_model.keras`.
+Berkas ini adalah skrip utama untuk **membangun dan melatih model dari awal**.
 
-### 2\. `train_resume.py`
+  * **Arsitektur Model**: Model CNN ini dibangun dengan beberapa lapisan `Conv2D` dan `MaxPooling2D` untuk ekstraksi fitur dari gambar, serta lapisan `Dense` untuk klasifikasi. Terdapat juga lapisan `Dropout` untuk mengurangi risiko *overfitting*.
+  * **Callbacks**: Skrip ini menggunakan `ModelCheckpoint` untuk menyimpan versi model terbaik (berdasarkan `val_accuracy`) dan `EarlyStopping` untuk menghentikan pelatihan secara otomatis jika tidak ada peningkatan performa.
+  * **Output**: Model terbaik akan disimpan dengan nama `best_model.keras` di dalam folder `model_results`.
 
-Digunakan untuk melanjutkan proses pelatihan dari model yang sudah ada (`best_model.keras`). Ini berguna jika proses training sebelumnya berhenti atau jika Anda ingin melatih model lebih lanjut dengan data baru.
+#### 2\. `train_resume.py`
 
-### 3\. `predict.py`
+Gunakan berkas ini jika Anda ingin **melanjutkan proses pelatihan** dari model yang sudah ada (`best_model.keras`). Ini sangat berguna jika pelatihan sebelumnya terhenti atau jika Anda ingin melatih ulang model dengan data yang baru.
 
-Script untuk melakukan prediksi pada gambar-gambar baru menggunakan model yang telah dilatih (`best_model.keras`).
+#### 3\. `predict.py`
 
-  * **Proses**: Memuat gambar, mengubah ukurannya, melakukan normalisasi, dan kemudian memprediksi kelasnya.
-  * **Output**: Hasil prediksi (nama file dan kelas prediksi) akan dicetak di terminal dan disimpan dalam sebuah file Excel di dalam folder gambar uji.
+Skrip ini berfungsi untuk **melakukan prediksi pada gambar baru** menggunakan model yang sudah dilatih (`best_model.keras`).
 
-### 4\. `module/generator.py`
+  * **Proses**: Skrip akan memuat gambar, mengubah ukurannya, melakukan normalisasi, lalu memprediksi kelasnya (Curah, Kemasan, atau Oplosan).
+  * **Output**: Hasil prediksi akan ditampilkan di terminal dan juga disimpan dalam format Excel (`.xlsx`) di dalam folder tempat gambar uji berada.
 
-Modul ini berisi fungsi `data_generator` yang menggunakan `ImageDataGenerator` dari Keras untuk membuat *batch* data gambar dari direktori. Fungsi ini juga melakukan normalisasi piksel gambar ke rentang [0, 1].
+#### 4\. `module/generator.py`
 
-### 5\. `module/utility.py`
+Modul ini berisi fungsi `data_generator` yang tugasnya adalah memuat data gambar dari direktori dan menyiapkannya untuk proses pelatihan. Fungsi ini akan secara otomatis memberi label pada gambar sesuai dengan nama subfolder tempat gambar tersebut disimpan dan melakukan normalisasi nilai piksel gambar.
 
-Berisi fungsi-fungsi pembantu yang digunakan di seluruh proyek, seperti:
+#### 5\. `module/utility.py`
 
-  * `saveToExcel()`: Menyimpan data (misalnya hasil prediksi) ke file `.xlsx`.
-  * `pickle_load()`: Memuat file pickle.
-  * `cetak()`: Mencetak DataFrame Pandas ke konsol.
-  * `copyAllFile()`: Menyalin semua file dari satu folder ke folder lain.
+Berkas ini berisi fungsi-fungsi pendukung yang digunakan di skrip lain, seperti menyimpan data ke Excel, memuat data, atau menyalin berkas.
 
-### 6\. `.gitignore`
+-----
 
-File ini berisi daftar file dan folder yang akan diabaikan oleh Git, seperti:
+### 🚀 **Cara Menggunakan Proyek Ini**
 
-  * File gambar (`*.jpg`).
-  * File model Keras (`*.keras`).
-  * File Excel (`*.xlsx`, `*.xls`).
-  * Cache Python (`__pycache__/`, `*.pyc`).
+Ikuti langkah-langkah berikut untuk menjalankan proyek ini dari awal hingga akhir.
 
-## 🚀 Cara Menggunakan
+#### **Prasyarat**
 
-### Prasyarat
-
-Pastikan Anda sudah menginstall semua *library* yang dibutuhkan. Anda bisa menginstalnya menggunakan pip:
+Pastikan Anda sudah menginstal *library* yang dibutuhkan. Buka terminal atau Command Prompt, lalu jalankan perintah berikut:
 
 ```bash
 pip install tensorflow pandas numpy openpyxl
 ```
 
-### 1\. Menyiapkan Dataset
+#### **Langkah 1: Menyiapkan Dataset**
 
-  * Buat struktur folder `dataset/data_train` dan `dataset/data_test` seperti yang dijelaskan di atas.
-  * Masukkan gambar-gambar yang sesuai ke dalam subfolder `curah`, `kemasan`, dan `oplosan`.
+Ini adalah langkah paling penting. Kualitas model Anda sangat bergantung pada kualitas dan kuantitas data yang Anda siapkan.
 
-### 2\. Melatih Model Baru
+1.  **Buat Struktur Folder**: Ikuti struktur direktori `dataset` yang telah dijelaskan di atas. Buat folder `data_train` (untuk melatih model) dan `data_test` (untuk menguji model).
+2.  **Isi Folder Dataset**:
+      * Di dalam `dataset/data_train`, masukkan gambar-gambar minyak goreng sesuai dengan kategorinya ke dalam subfolder `curah`, `kemasan`, dan `oplosan`. Semakin banyak gambar, semakin baik.
+      * Lakukan hal yang sama untuk `dataset/data_test`. Pastikan gambar di `data_test` **berbeda** dari yang ada di `data_train`.
 
-Untuk memulai pelatihan dari awal, jalankan script `run_train.py`:
+#### **Langkah 2: Melatih Model Baru**
 
-```bash
-python run_train.py
-```
+Jika Anda memulai dari nol, jalankan skrip `run_train.py` untuk melatih model.
 
-Proses ini akan melatih model dan menyimpan bobot terbaik ke `model_results/best_model.keras`.
+1.  Buka terminal atau Command Prompt.
+2.  Arahkan ke direktori proyek (`LSI-Build-CNN-Model`).
+3.  Jalankan perintah berikut:
+    ```bash
+    python run_train.py
+    ```
+4.  Proses pelatihan akan dimulai. Anda akan melihat *progress bar* untuk setiap *epoch*. Setelah selesai, model terbaik akan tersimpan di `model_results/best_model.keras`.
 
-### 3\. Melanjutkan Pelatihan
+#### **Langkah 3: Melakukan Prediksi**
 
-Jika Anda ingin melanjutkan pelatihan dari model yang sudah tersimpan, jalankan:
+Setelah model berhasil dilatih, Anda bisa menggunakannya untuk melakukan prediksi.
 
-```bash
-python train_resume.py
-```
+1.  **Siapkan Data Uji**: Letakkan gambar yang ingin Anda prediksi di dalam folder yang sesuai, misalnya di `dataset/data_test/curah/`.
 
-### 4\. Melakukan Prediksi
+2.  **Penyesuaian Kode**: Buka berkas `predict.py` dan lakukan penyesuaian pada bagian ini:
 
-  * Letakkan gambar yang ingin Anda uji di dalam folder `dataset/data_test/<nama_kelas>`.
-  * Ubah variabel `dataName` dan `ujiFolderPath` di dalam script `predict.py` sesuai dengan lokasi data uji Anda.
-  * Jalankan script `predict.py`:
+    ```python
+    # Ubah 'curah' sesuai dengan nama folder kelas yang ingin diuji
+    dataName = 'curah' 
+
+    # Pastikan path ini sesuai dengan struktur folder di komputer Anda
+    ujiFolderPath = os.path.join('dataset\\TA HENDRA\\data_test', dataName) 
+    ```
+
+      * Ubah nilai `dataName` menjadi nama folder dari kelas gambar yang ingin Anda uji (misalnya `'kemasan'` atau `'oplosan'`).
+      * Pastikan `ujiFolderPath` mengarah ke lokasi yang benar. Jika Anda mengikuti struktur direktori yang disarankan, Anda mungkin hanya perlu mengubah `dataName`.
+
+3.  **Jalankan Prediksi**: Jalankan skrip `predict.py` melalui terminal:
+
     ```bash
     python predict.py
     ```
-    Hasilnya akan ditampilkan di layar dan disimpan dalam file Excel.
 
-## ⚖️ Lisensi
+4.  Hasil prediksi akan muncul di layar dan juga tersimpan sebagai berkas Excel di dalam folder `ujiFolderPath`.
 
-Proyek ini dilisensikan di bawah **CC0 1.0 Universal**, yang berarti berada dalam domain publik. Anda bebas memodifikasi, mendistribusikan, dan menggunakan kode ini untuk tujuan apa pun tanpa batasan.
+-----
+
+### 🔧 **Penyesuaian Kustom oleh Pengguna**
+
+Anda dapat dengan mudah menyesuaikan beberapa parameter dalam kode agar sesuai dengan kebutuhan Anda.
+
+#### 1\. Di `run_train.py` dan `train_resume.py`:
+
+  * **Ukuran Gambar**: Jika gambar Anda memiliki dimensi yang berbeda, ubah nilai `IMG_HEIGHT` dan `IMG_WIDTH`.
+    ```python
+    IMG_HEIGHT = 120
+    IMG_WIDTH = 160
+    ```
+  * **Parameter Pelatihan**: Anda bisa mengubah `BATCH_SIZE` (jumlah gambar yang diproses dalam satu waktu) dan `EPOCHS` (berapa kali model "belajar" dari keseluruhan dataset).
+    ```python
+    BATCH_SIZE = 32
+    EPOCHS = 50 
+    ```
+
+#### 2\. Di `predict.py`:
+
+  * **Nama Kelas**: Jika Anda melatih model untuk kelas yang berbeda (misalnya, 'minyak zaitun', 'minyak kelapa'), sesuaikan `class_names` agar cocok dengan nama folder dataset Anda.
+    ```python
+    class_names = ['Curah', 'Kemasan', 'Oplosan']
+    ```
+
+#### 3\. Di `module/generator.py` (Untuk Augmentasi Data):
+
+Jika jumlah data Anda sedikit, Anda bisa menggunakan **augmentasi data** untuk memperbanyak variasi data secara sintetis. Caranya adalah dengan menghilangkan komentar (tanda `#`) pada parameter di dalam `ImageDataGenerator`.
+
+```python
+train_datagen = ImageDataGenerator(
+    rescale=1./255,  # Normalisasi
+    
+    #====Jika butuh augmentasi, silahkan hilangkan tanda # di bawah====#
+    rotation_range=20,      # Rotasi gambar acak
+    width_shift_range=0.2,  # Pergeseran horizontal
+    height_shift_range=0.2, # Pergeseran vertikal
+    shear_range=0.2,        # Transformasi geser
+    zoom_range=0.2,         # Zoom in/out gambar
+    horizontal_flip=True,   # Membalik gambar secara horizontal
+    fill_mode='nearest',    # Mengisi piksel yang hilang
+)
+```
+
+Semoga dokumentasi ini membantu Anda dalam memahami dan menggunakan proyek ini. Selamat mencoba\!
