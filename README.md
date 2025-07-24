@@ -1,5 +1,3 @@
-Tentu, saya akan membuatkan dokumentasi yang detail dan mudah dipahami bagi orang awam untuk menggunakan proyek klasifikasi kualitas minyak goreng ini. Dokumentasi ini akan mencakup penjelasan setiap skrip, cara penggunaannya, dan penyesuaian yang mungkin perlu dilakukan.
-
 ### Dokumentasi Proyek: Klasifikasi Kualitas Minyak Goreng menggunakan CNN
 
 Dokumentasi ini akan memandu Anda dalam menggunakan serangkaian program untuk melatih dan menguji model kecerdasan buatan (*Artificial Intelligence*) yang dapat membedakan kualitas minyak goreng berdasarkan gambarnya.
@@ -182,3 +180,7 @@ train_datagen = ImageDataGenerator(
 ```
 
 Semoga dokumentasi ini membantu Anda dalam memahami dan menggunakan proyek ini. Selamat mencoba\!
+
+## ⚖️ Lisensi
+
+Proyek ini dilisensikan di bawah **CC0 1.0 Universal**, yang berarti berada dalam domain publik. Anda bebas memodifikasi, mendistribusikan, dan menggunakan kode ini untuk tujuan apa pun tanpa batasan.
