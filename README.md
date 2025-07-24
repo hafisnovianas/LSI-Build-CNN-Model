@@ -1,6 +1,6 @@
 # Klasifikasi Kualitas Minyak Goreng menggunakan CNN
 
-Repositori ini berisi kode untuk membangun, melatih, dan menggunakan model *Convolutional Neural Network* (CNN) untuk mengklasifikan gambar minyak goreng ke dalam tiga kategori: **Curah**, **Kemasan**, dan **Oplosan**. Proyek ini dibuat menggunakan TensorFlow dan Keras.
+Dokumentasi ini akan memandu Anda dalam menggunakan serangkaian program untuk melatih dan menguji model kecerdasan buatan (*Artificial Intelligence*) yang dapat membedakan kualitas minyak goreng berdasarkan gambarnya.
 
 -----
 
